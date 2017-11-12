@@ -6,7 +6,7 @@ results_dir = 'results'
 
 # Name of input file. Must be a wav (I think)
 # Can indicate a full path, like 'this/is/where/Ifind/love.wav'
-input_file = 'cup.wav'
+input_file = 'input/cup.wav'
 
 # Signal is stereo or not
 stereo = False 
