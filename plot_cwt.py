@@ -39,7 +39,7 @@ def do_plots(paras, b, zz, times, freqs):
 	gs = gridspec.GridSpec(2, 1, width_ratios=[1], height_ratios=[3, 1])
 
 	ax1 = subplot(gs[0])
-	ax2 = subplot(gs[1])
+	ax2 = subplot(gs[1], sharex=ax1)
 
 	ax1.pcolormesh(times, freqs, zz, cmap=paras['cmap'])
 	if paras['ylog']:
@@ -54,7 +54,7 @@ def do_plots(paras, b, zz, times, freqs):
 
 if __name__=='__main__':
 	if len(sys.argv)<2:
-		print("You not specified a paras file, I try to use: paras_plot.py")
+		print("You did not specify a paras file, I try to use: paras_plot.py")
 		paras_file_name = 'paras_plot.py'
 	else:
 		paras_file_name = sys.argv[1]

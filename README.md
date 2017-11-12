@@ -3,10 +3,10 @@
 ![Transformed Signal](cup_image.png "Transformed Signal")
 
 ## Requirements
-You need numpy, scipy, matplotlib, pickle, stl_tools. You can install them like this:
+You need numpy, scipy, matplotlib, stl_tools, and PyWavelets. You can install them like this:
 
 ```
-sudo pip3 install scipy numpy matplotlib pickle stl_tools
+sudo pip3 install scipy numpy matplotlib stl_tools PyWavelets
 ```
 
 The scripts are designed to be used on linux system with python 3, but you can change that with minimal effort if needed (or open an issue).

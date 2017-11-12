@@ -98,7 +98,7 @@ def post_process(paras, cwtmatr, b, fs, times, freqs):
 
 if __name__=='__main__':
 	if len(sys.argv)<2:
-		print("You not specified a paras file, I try to use: paras.py")
+		print("You did not specify a paras file, I try to use: paras.py")
 		paras_file_name = 'paras.py'
 	else:
 		paras_file_name = sys.argv[1]
