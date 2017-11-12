@@ -1,5 +1,7 @@
 # Small scripts to compute Continuous Wavelet Transform
 
+![Transformed Signal](cup_image.png "Transformed Signal")
+
 ## Requirements
 You need numpy, scipy, matplotlib, pickle, stl_tools. You can install them like this:
 

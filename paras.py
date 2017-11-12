@@ -29,7 +29,7 @@ log_scale = True # True for log scale, False for linear one
 lower_bound = 1.9 # in Hertz for lin, or exponent for log scale
 upper_bound = 4 # idem
 base_log = 10 # Base for log scale. Ignored if linear.
-n_freq = 5 # Number of frequencies to consider (-> resolution in freq.)
+n_freq = 300 # Number of frequencies to consider (-> resolution in freq.)
 
 # Gaussian filter to smooth out the output
 # First value is std in number of point in the frequency direction
