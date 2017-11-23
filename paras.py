@@ -1,3 +1,7 @@
+"""
+Parameter file template for make_cwt.py. It is suggested to make a copy and modify the copy instead of this file.
+"""
+
 import sys as _sys
 
 # Folder to put the results in (relative or absolute path)
@@ -8,13 +12,9 @@ results_dir = 'results'
 # Can indicate a full path, like 'this/is/where/Ifind/love.wav'
 input_file = 'input/cup.wav'
 
-# Signal is stereo or not
-stereo = False 
-
-# If stereo, choose left or right channel
-# (0 or 1, not sure which one is which)
-# Ignore if mono
-channel = 0 
+# If signal is stereo, put 'left' or 'right' to transform one channel or the other.
+# Ignored if mono
+stereo_side = 'left' 
 
 # Downsampling factor of initial signal
 # For instance, downsampling = 2 takes half the points.

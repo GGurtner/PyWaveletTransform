@@ -20,23 +20,29 @@ def prepare_signal(paras):
 	a = read(paras['input_file'])
 	# Initial sampling frequency
 	f_s_i = a[0]
-	if not paras['stereo']:
-		# Get mono signal
-		b = a[1]
-		if len(a[1])==2:
-			raise Exception("You have probably passed a stereo signal. \nChoose stereo=True in the paras file")
-		
-		# Downsample the signal
-		b = b[::paras['downsampling_signal']]
 
-		# New sampling frequency after downsampling
-		fs = a[0]/paras['downsampling_signal']
-
-		# Array of time in seconds
-		times = array(list(arange(len(b))))/fs
-
+	# Signal
+	if type(a[1][0]) in [tuple, list, array, ndarray]:
+		if len(a[1][0])==2:
+			print ('Detected stereo signal, transforming', paras['stereo_side'], 'channel.')
+			if paras['stereo_side']=='left':
+				b = list(zip(*a[1]))[0]
+			else:
+				b = list(zip(*a[1]))[1]
+		else:
+			raise Exception('Could not recognise the type of signal.')
 	else:
-		raise Exception("Stereo not implemented yet...")
+		print ('Detected mono signal.')
+		b = a[1]
+		
+	# Downsample the signal
+	b = b[::paras['downsampling_signal']]
+
+	# New sampling frequency after downsampling
+	fs = a[0]/paras['downsampling_signal']
+
+	# Array of time in seconds
+	times = array(list(arange(len(b))))/fs
 
 	# Select part of the signal:
 	idx_start = next((i for i, t in enumerate(times) if t > paras['start']), -1) - 1
@@ -47,7 +53,7 @@ def prepare_signal(paras):
 		idx_end = -1
 
 	if idx_start == idx_end:
-		raise Exception("The signal is empty. Check the bounds ('start' and 'end')")
+		raise Exception("The signal selected is empty. Check the bounds ('start' and 'end')")
 
 	b = b[idx_start:idx_end]
 	times = times[idx_start:idx_end]
@@ -122,4 +128,4 @@ if __name__=='__main__':
 		do_plots(paras_plots, b, zz, times, freqs)
 
 		print ("I can't show the image in this script for some reason.")
-		print ("Fire up ./plot_cwt.py if you want to see it, or go and see your png file directly")
+		print ("Fire up ./plot_cwt.py if you want to see an interactive version, or go and see the .png file directly.")

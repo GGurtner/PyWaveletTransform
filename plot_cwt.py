@@ -50,6 +50,7 @@ def do_plots(paras, b, zz, times, freqs):
 	if paras['show_plot']:
 		show()	
 
+	print ('Saving .png file as:', jn(paras['results_dir'], paras['output_file']))
 	savefig(jn(paras['results_dir'], paras['output_file']), dpi=paras['dpi'])
 
 if __name__=='__main__':
