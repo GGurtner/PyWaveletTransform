@@ -65,11 +65,13 @@ def prepare_signal(paras):
 def do_cwt(paras, b, fs):
 	if paras['log_scale']:
 		space_gen = logspace
+		kwarg = {'base':paras['base_log']}
 	else:
 		space_gen = linspace
+		kwarg = {}
 
 	# Choose frequencies
-	freqs = array(space_gen(paras['lower_bound'], paras['upper_bound'], paras['n_freq'], base=paras['base_log']))
+	freqs = array(space_gen(paras['lower_bound'], paras['upper_bound'], paras['n_freq'], **kwarg))
 	
 	# Transform them in scales
 	scales = fs/freqs

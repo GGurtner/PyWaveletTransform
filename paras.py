@@ -25,9 +25,9 @@ start = 0 # 0 is start of signal
 end = -1 # -1 is end of signal
 
 # Freq to consider
-log_scale = True # True for log scale, False for linear one 
-lower_bound = 1.9 # in Hertz for lin, or exponent for log scale
-upper_bound = 4 # idem
+log_scale = False # True for log scale, False for linear one 
+lower_bound = 100. # in Hertz for lin, or exponent for log scale
+upper_bound = 10000. # idem
 base_log = 10 # Base for log scale. Ignored if linear.
 n_freq = 300 # Number of frequencies to consider (-> resolution in freq.)
 
