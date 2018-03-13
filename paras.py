@@ -1,8 +1,11 @@
 """
 Parameter file template for make_cwt.py. It is suggested to make a copy and modify the copy instead of this file.
+This parameter file can also be used with make_plot_cwt to do only the plot with a saved .pic file. In this case
+everything above 'input_file_pic' will be ignored, except results_dir and log_scale.
 """
 
 import sys as _sys
+from os.path import join as _jn
 
 # Folder to put the results in (relative or absolute path)
 # Put '.' to put it where the script is.
@@ -10,6 +13,7 @@ results_dir = 'results'
 
 # Name of input file. Must be a wav (I think)
 # Can indicate a full path, like 'this/is/where/Ifind/love.wav'
+# Put '\' instead of '/' when using Windows!
 input_file = 'input/cup.wav'
 
 # If signal is stereo, put 'left' or 'right' to transform one channel or the other.
@@ -25,8 +29,8 @@ start = 0 # 0 is start of signal
 end = -1 # -1 is end of signal
 
 # Freq to consider
-log_scale = False # True for log scale, False for linear one 
-lower_bound = 100. # in Hertz for lin, or exponent for log scale
+log_scale = True # True for log scale, False for linear one 
+lower_bound = 100. # in Hertz for lin, or exponent for log scale.
 upper_bound = 10000. # idem
 base_log = 10 # Base for log scale. Ignored if linear.
 n_freq = 300 # Number of frequencies to consider (-> resolution in freq.)
@@ -45,7 +49,7 @@ downsampling_array = [3, 3]
 # Save numpy array or not (pickle file).
 # Put 'None' if you don't want to save the array, a string for its name otherwise
 # If saved, the vectors of times and frequencies are also saved, as well as the signal.
-# Do this if you want to plot with plot_cwt.py script!
+# Do this if you want to test different plot configuration with make_plot_cwt.py script!
 save_array = 'cup.pic' # None
 
 # Name of output file (stl)
@@ -60,9 +64,33 @@ stl_options = {'scale':0.05,
 
 # Do the plots as well or not
 do_plots_too = True
-paras_file_plots = 'paras_plot.py' # name of paras file for plots
+
+# If do_plots_too is False, the following is ignored.
+
+# Input file (can an absolute or relative path, put '\' when using window!)
+# This is only used with the script 'make_plot_cwt.py'
+input_file_pic = _jn(results_dir, 'cup.pic')
+
+# Figure size
+figure_size = (20, 10)
+
+# colormap to use
+cmap = 'hot'
+
+# log scale for y?
+# ylog = False
+
+# Show plot?
+# Not working directly with make_cwt.py, but works with make_plot_cwt.py
+show_plot = True
+
+# Output file name
+output_file = 'cup.png'
+
+# dpi
+dpi = 150
 
 
 #### DO NOT MODIFY THIS !!!! #####
 paras = {k:v for k,v in vars().items() if k[:1]!='_' and k!='version' and k!='Paras' and not k in [key for key in locals().keys()
-           if key in locals().keys() and isinstance(locals()[key], type(_sys)) and not key.startswith('__')]}
+		   if key in locals().keys() and isinstance(locals()[key], type(_sys)) and not key.startswith('__')]}

@@ -1,22 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""
+Use this file like this:
+./make_cwt.py my_paras.py
+or this:
+./make_cwt.py
+to produce a cwt of a signal. Parameters are read from the corresponding my_paras.py file
+or the default paras.py file in the second case.
+"""
+
+from pylab import *
+
 import os
 import sys
 from os.path import join as jn
 import pywt
 from scipy.io.wavfile import read
 
-from numpy import *
 from scipy import signal, ndimage
 from stl_tools import numpy2stl
 import pickle
-from pylab import *
 import matplotlib.image as mpimg
+from math import log # because numpy log has no base argument...
 
-from plot_cwt import do_plots, read_paras
+from make_plot_cwt import do_plots, read_paras
 
 def prepare_signal(paras):
+	print (paras['input_file'])
 	a = read(paras['input_file'])
 	# Initial sampling frequency
 	f_s_i = a[0]
@@ -66,12 +77,15 @@ def do_cwt(paras, b, fs):
 	if paras['log_scale']:
 		space_gen = logspace
 		kwarg = {'base':paras['base_log']}
+		lb = log(paras['lower_bound'], paras['base_log'])
+		ub = log(paras['upper_bound'], paras['base_log'])
 	else:
 		space_gen = linspace
 		kwarg = {}
+		lb, ub = paras['lower_bound'], paras['upper_bound']
 
 	# Choose frequencies
-	freqs = array(space_gen(paras['lower_bound'], paras['upper_bound'], paras['n_freq'], **kwarg))
+	freqs = array(space_gen(lb, ub, paras['n_freq'], **kwarg))
 	
 	# Transform them in scales
 	scales = fs/freqs
@@ -126,8 +140,8 @@ if __name__=='__main__':
 
 	# Do plots (or not)
 	if paras['do_plots_too']:
-		paras_plots = read_paras(paras_file=paras['paras_file_plots'])
-		do_plots(paras_plots, b, zz, times, freqs)
+		#paras_plots = read_paras(paras_file=paras['paras_file_plots'])
+		do_plots(paras, b, zz, times, freqs)
 
-		print ("I can't show the image in this script for some reason.")
-		print ("Fire up ./plot_cwt.py if you want to see an interactive version, or go and see the .png file directly.")
+		print ("Sometimes I can't show the image in this script for some reason.")
+		print ("Fire up ./make_plot_cwt.py if you want to see an interactive version, or go and see the .png file directly.")
