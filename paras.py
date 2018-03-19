@@ -12,9 +12,9 @@ from os.path import join as _jn
 results_dir = 'results'
 
 # Name of input file. Must be a wav (I think)
-# Can indicate a full path, like 'this/is/where/Ifind/love.wav'
-# Put '\' instead of '/' when using Windows!
-input_file = 'input/cup.wav'
+# Can indicate a full path, relative or absolute,
+# with directories deparated by commas
+input_file = _jn('input', 'cup.wav')
 
 # If signal is stereo, put 'left' or 'right' to transform one channel or the other.
 # Ignored if mono
@@ -50,10 +50,10 @@ downsampling_array = [3, 3]
 # Put 'None' if you don't want to save the array, a string for its name otherwise
 # If saved, the vectors of times and frequencies are also saved, as well as the signal.
 # Do this if you want to test different plot configuration with make_plot_cwt.py script!
-save_array = 'cup.pic' # None
+output_pic = 'cup.pic' # None
 
 # Name of output file (stl)
-output_file = 'cup.stl'
+output_stl = 'cup.stl'
 
 # Additional stl options
 # I don't really know what they do, see 
@@ -67,7 +67,7 @@ do_plots_too = True
 
 # If do_plots_too is False, the following is ignored.
 
-# Input file (can an absolute or relative path, put '\' when using window!)
+# Input file (can an absolute or relative path)
 # This is only used with the script 'make_plot_cwt.py'
 input_file_pic = _jn(results_dir, 'cup.pic')
 
@@ -77,15 +77,11 @@ figure_size = (20, 10)
 # colormap to use
 cmap = 'hot'
 
-# log scale for y?
-# ylog = False
-
 # Show plot?
-# Not working directly with make_cwt.py, but works with make_plot_cwt.py
 show_plot = True
 
 # Output file name
-output_file = 'cup.png'
+output_png = 'cup.png'
 
 # dpi
 dpi = 150

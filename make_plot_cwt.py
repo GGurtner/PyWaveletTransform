@@ -57,8 +57,8 @@ def do_plots(paras, b, zz, times, freqs):
 
 	ax2.plot(times, b)
 
-	print ('Saving .png file as:', jn(paras['results_dir'], paras['output_file']))
-	savefig(jn(paras['results_dir'], paras['output_file']), dpi=paras['dpi'])
+	print ('Saving .png file as:', jn(paras['results_dir'], paras['output_png']))
+	savefig(jn(paras['results_dir'], paras['output_png']), dpi=paras['dpi'])
 
 	if paras['show_plot']:
 		show()	

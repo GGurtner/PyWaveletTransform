@@ -109,12 +109,16 @@ def post_process(paras, cwtmatr, b, fs, times, freqs):
 	b = b[::paras['downsampling_array'][0]]
 
 	# Save numpy array
-	if not paras['save_array'] is None:
-		with open(jn(paras['results_dir'], paras['save_array']), 'wb') as f:
+	if not paras['output_pic'] is None:
+		path = jn(paras['results_dir'], paras['output_pic'])
+		print ('Saving .pic file as', path)
+		with open(path, 'wb') as f:
 			pickle.dump((b, zz, times, freqs), f)
 
 	# Save stl file
-	numpy2stl(zz, jn(paras['results_dir'], paras['output_file']), **paras['stl_options']) 
+	path = jn(paras['results_dir'], paras['output_stl'])
+	print ('Saving .stl file as', path)
+	numpy2stl(zz, path, **paras['stl_options'])
 
 	return b, zz, times, freqs
 
