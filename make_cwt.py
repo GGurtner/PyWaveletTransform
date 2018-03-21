@@ -131,7 +131,7 @@ if __name__=='__main__':
 
 	# Read parameter file
 	paras = read_paras(paras_file=paras_file_name)
-	os.system('mkdir -p ' + paras['results_dir'])
+	os.makedirs(paras['results_dir'], exist_ok=True)
 	
 	# Prepare signal
 	b, fs, times = prepare_signal(paras)

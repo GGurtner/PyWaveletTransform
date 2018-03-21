@@ -72,8 +72,8 @@ if __name__=='__main__':
 
 	# Read parameter file
 	paras = read_paras(paras_file=paras_file_name)
-	os.system('mkdir -p ' + paras['results_dir'])
-
+	os.makedirs(paras['results_dir'], exist_ok=True)
+	
 	# Do plots
 	b, zz, times, freqs = get_data(paras)
 	do_plots(paras, b, zz, times, freqs)
