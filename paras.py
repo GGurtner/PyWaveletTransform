@@ -44,7 +44,7 @@ filter_gaussian = [1, 30]
 # Downsampling factor for the output array
 # First value is for time, last for frequency
 # Put [1, 1] for no downsampling
-downsampling_array = [3, 3]
+downsampling_array = [10, 3]
 
 # Save numpy array or not (pickle file).
 # Put 'None' if you don't want to save the array, a string for its name otherwise
@@ -59,11 +59,18 @@ output_stl = 'cup.stl'
 # I don't really know what they do, see 
 # stl_tools.numpy2stl documentation.
 stl_options = {'scale':0.05,
-				'mask_val':5.,
-				'solid':True}
+				#'mask_val':5.,
+				'solid':False,
+				# 'max_width':50.,
+				# 'max_depth':20.,
+				# 'max_height':100.
+				}
+
+# Ratio between the X axis (time) and the Y axis (frequency) in the .stl
+ratio_xy = 5.
 
 # Do the plots as well or not
-do_plots_too = True
+do_plots_too = False
 
 # If do_plots_too is False, the following is ignored.
 
@@ -78,7 +85,7 @@ figure_size = (20, 10)
 cmap = 'hot'
 
 # Show plot?
-show_plot = True
+show_plot = False
 
 # Output file name
 output_png = 'cup.png'

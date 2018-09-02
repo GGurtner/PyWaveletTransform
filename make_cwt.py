@@ -23,6 +23,7 @@ from stl_tools import numpy2stl
 import pickle
 import matplotlib.image as mpimg
 from math import log # because numpy log has no base argument...
+from stl import mesh
 
 from make_plot_cwt import do_plots, read_paras
 
@@ -119,6 +120,15 @@ def post_process(paras, cwtmatr, b, fs, times, freqs):
 	path = jn(paras['results_dir'], paras['output_stl'])
 	print ('Saving .stl file as', path)
 	numpy2stl(zz, path, **paras['stl_options'])
+
+	# Rescale x/y axis
+	the_mesh = mesh.Mesh.from_file(path)
+	xsize =	the_mesh.x.max() -	the_mesh.x.min()
+	ysize =	the_mesh.y.max() -	the_mesh.y.min()
+
+	the_mesh.y = the_mesh.y*(xsize/ysize)/paras['ratio_xy']
+
+	the_mesh.save(path)
 
 	return b, zz, times, freqs
 
