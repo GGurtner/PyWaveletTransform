@@ -58,12 +58,12 @@ output_stl = 'cup.stl'
 # Additional stl options
 # I don't really know what they do, see 
 # stl_tools.numpy2stl documentation.
-stl_options = {'scale':0.05,
+stl_options = {#'scale':0.05,
 				#'mask_val':5.,
 				'solid':False,
-				# 'max_width':50.,
-				# 'max_depth':20.,
-				# 'max_height':100.
+				'max_width':100.,
+				'max_depth':100.,
+				'max_height':50.
 				}
 
 # Ratio between the X axis (time) and the Y axis (frequency) in the .stl
@@ -74,7 +74,7 @@ do_plots_too = False
 
 # If do_plots_too is False, the following is ignored.
 
-# Input file (can an absolute or relative path)
+# Input file (can be an absolute or relative path)
 # This is only used with the script 'make_plot_cwt.py'
 input_file_pic = _jn(results_dir, 'cup.pic')
 
